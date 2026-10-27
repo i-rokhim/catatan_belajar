@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Catatan Belajar Coding</title>
+</head>
+<body>
+    <h1>Catatan Belajar Coding</h1>
+    {% for c in semua %}
+        <h2>{{ c.judul }}</h2>
+        <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>
+        <p>{{ c.isi }}</p>
+    {% empty %}
+        <p>Belum ada catatan.</p>
+    {% endfor %}
+</body>
+</html>
