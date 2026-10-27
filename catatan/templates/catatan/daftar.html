@@ -7,6 +7,10 @@
 <body>
     <h1>Catatan Belajar Coding</h1>
     <a href="{% url 'tambah_catatan' %}">Tambah catatan</a>
+    <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Keluar</button>
+    </form>
     {% for c in semua %}
         <h2>{{ c.judul }}</h2>
         <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>

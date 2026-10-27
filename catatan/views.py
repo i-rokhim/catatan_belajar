@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Catatan
 from .forms import CatatanForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 def hapus_catatan(request, pk):
     catatan = get_object_or_404(Catatan, pk=pk)
@@ -36,3 +38,14 @@ def edit_catatan(request, pk):
     else:
         form = CatatanForm(instance=catatan)
     return render(request, 'catatan/edit.html', {'form': form})
+
+def registrasi(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('daftar_catatan')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/registrasi.html', {'form': form})
