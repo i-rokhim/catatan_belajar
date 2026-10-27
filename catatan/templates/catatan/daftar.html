@@ -1,12 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Catatan Belajar Coding</title>
-    <link rel="stylesheet" href="{% static 'catatan/style.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block isi %}
     <h1>Catatan Belajar Coding</h1>
     <a href="{% url 'tambah_catatan' %}">Tambah catatan</a>
     <form method="post" action="{% url 'logout' %}">
@@ -24,5 +18,4 @@
     {% empty %}
         <p>Belum ada catatan.</p>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
