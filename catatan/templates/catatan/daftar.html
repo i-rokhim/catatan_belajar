@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Catatan Belajar Coding</h1>
+    <a href="{% url 'tambah_catatan' %}">Tambah catatan</a>
     {% for c in semua %}
         <h2>{{ c.judul }}</h2>
         <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>
