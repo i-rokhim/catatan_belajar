@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Catatan</title>
+</head>
+<body>
+    <h1>Edit Catatan</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Simpan perubahan</button>
+    </form>
+    <a href="{% url 'daftar_catatan' %}">Kembali</a>
+</body>
+</html>

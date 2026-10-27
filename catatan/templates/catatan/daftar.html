@@ -11,6 +11,7 @@
         <h2>{{ c.judul }}</h2>
         <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>
         <p>{{ c.isi }}</p>
+        <a href="{% url 'edit_catatan' c.pk %}">Edit</a>
     {% empty %}
         <p>Belum ada catatan.</p>
     {% endfor %}
