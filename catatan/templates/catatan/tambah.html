@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Tambah Catatan</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block judul %}Tambah Catatan{% endblock %}
+
+{% block isi %}
     <h1>Tambah Catatan</h1>
     <form method="post">
         {% csrf_token %}
@@ -12,5 +10,4 @@
         <button type="submit">Simpan</button>
     </form>
     <a href="{% url 'daftar_catatan' %}">Kembali</a>
-</body>
-</html>
+{% endblock %}
