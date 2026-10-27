@@ -12,6 +12,7 @@
         <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>
         <p>{{ c.isi }}</p>
         <a href="{% url 'edit_catatan' c.pk %}">Edit</a>
+        <a href="{% url 'hapus_catatan' c.pk %}">Hapus</a>
     {% empty %}
         <p>Belum ada catatan.</p>
     {% endfor %}

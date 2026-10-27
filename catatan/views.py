@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Catatan
 from .forms import CatatanForm
 
+def hapus_catatan(request, pk):
+    catatan = get_object_or_404(Catatan, pk=pk)
+    if request.method == 'POST':
+        catatan.delete()
+        return redirect('daftar_catatan')
+    return render(request, 'catatan/hapus.html', {'catatan': catatan})
+
 
 def daftar_catatan(request):
     semua = Catatan.objects.order_by('-tanggal')
