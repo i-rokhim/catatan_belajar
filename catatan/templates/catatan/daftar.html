@@ -1,22 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <title>Catatan Belajar Coding</title>
+    <link rel="stylesheet" href="{% static 'catatan/style.css' %}">
 </head>
 <body>
     <h1>Catatan Belajar Coding</h1>
     <a href="{% url 'tambah_catatan' %}">Tambah catatan</a>
     <form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit">Keluar</button>
+        {% csrf_token %}
+        <button type="submit">Keluar</button>
     </form>
     {% for c in semua %}
-        <h2>{{ c.judul }}</h2>
-        <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>
-        <p>{{ c.isi }}</p>
-        <a href="{% url 'edit_catatan' c.pk %}">Edit</a>
-        <a href="{% url 'hapus_catatan' c.pk %}">Hapus</a>
+        <div class="catatan">
+            <h2>{{ c.judul }}</h2>
+            <p>{{ c.kategori }} · {{ c.tanggal|date:"d M Y" }}</p>
+            <p>{{ c.isi }}</p>
+            <a href="{% url 'edit_catatan' c.pk %}">Edit</a>
+            <a href="{% url 'hapus_catatan' c.pk %}">Hapus</a>
+        </div>
     {% empty %}
         <p>Belum ada catatan.</p>
     {% endfor %}
