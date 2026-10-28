@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Hapus Catatan</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block judul %}Hapus Catatan{% endblock %}
+
+{% block isi %}
     <h1>Hapus Catatan</h1>
     <p>Yakin ingin menghapus "{{ catatan.judul }}"?</p>
     <form method="post">
@@ -12,5 +10,4 @@
         <button type="submit">Ya, hapus</button>
     </form>
     <a href="{% url 'daftar_catatan' %}">Batal</a>
-</body>
-</html>
+{% endblock %}
