@@ -40,3 +40,8 @@ button {
 .catatan:first-of-type {
     margin-top: 15px;
 }
+
+form + a {
+    display: inline-block;
+    margin-top: 15px;
+}
