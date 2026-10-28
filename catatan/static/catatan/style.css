@@ -36,3 +36,7 @@ button {
     margin-top: 15px;
     padding: 10px 20px;
 }
+
+.catatan:first-of-type {
+    margin-top: 15px;
+}
