@@ -7,9 +7,10 @@ sendiri dan hanya melihat catatannya sendiri.
 - Tambah, lihat, edit, dan hapus catatan (judul, kategori, isi, tanggal)
 - Registrasi, login, dan logout
 - Catatan dibatasi per pengguna
+- Pencarian catatan berdasarkan judul
 
 ## Menjalankan di Windows (CMD)
-
+    
     cd C:\catatan_belajar
     python -m venv venv
     venv\Scripts\activate
@@ -19,6 +20,12 @@ sendiri dan hanya melihat catatannya sendiri.
     python manage.py runserver
 
 Buka http://127.0.0.1:8000/ di browser.
+
+## Menjalankan tes
+    
+    python manage.py test
+
+Tes memastikan pengguna hanya melihat catatannya sendiri, tidak bisa mengedit atau menghapus catatan orang lain, dan pencarian berjalan.
 
 ## Catatan
 - `db.sqlite3` tidak ikut git, jadi database dibuat ulang lewat `migrate`.
