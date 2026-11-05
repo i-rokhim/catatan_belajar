@@ -24,3 +24,20 @@ class DaftarCatatanTest(TestCase):
         self.assertContains(response, "catatan milik A")
         self.assertNotContains(response, "catatan milik B")
 
+    def test_pengguna_tidak_bisa_edit_catatan_orang_lain(self):
+        self.client.login(username="userA", password="rahasia123")
+        catatan_b = Catatan.objects.get(judul="catatan milik B")
+        response = self.client.get(reverse("edit_catatan", args=[catatan_b.pk]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_pengguna_tidak_bisa_hapus_catatan_orang_lain(self):
+        self.client.login(username="userA", password="rahasia123")
+        catatan_b = Catatan.objects.get(judul="catatan milik B")
+        response = self.client.post(reverse("hapus_catatan", args=[catatan_b.pk]))
+        self.assertEqual(response.status_code, 404)
+        self.assertTrue(Catatan.objects.filter(pk=catatan_b.pk).exists())
+
+    def test_belum_login_dialihkan_ke_login(self):
+        response = self.client.get(reverse("daftar_catatan"))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
