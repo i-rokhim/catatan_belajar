@@ -3,10 +3,12 @@
 {% block isi %}
     <h1>Catatan Belajar Coding</h1>
     <a href="{% url 'tambah_catatan' %}">Tambah catatan</a>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Keluar</button>
+    
+    <form method="get">
+        <input type="text" name="q" value="{{ q }}" placeholder="Cari judul...">
+        <button type="submit">Cari</button>
     </form>
+    
     {% for c in semua %}
         <div class="catatan">
             <h2>{{ c.judul }}</h2>
@@ -16,6 +18,10 @@
             <a href="{% url 'hapus_catatan' c.pk %}">Hapus</a>
         </div>
     {% empty %}
-        <p>Belum ada catatan.</p>
+        {% if q %}
+            <p>Tidak ada hasil untuk pencarian ini.</p>
+        {% else %}
+            <p>Belum ada catatan.</p>
+        {% endif %}
     {% endfor %}
 {% endblock %}

@@ -5,12 +5,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Catatan
 from .forms import CatatanForm
 
-
 @login_required
 def daftar_catatan(request):
-    semua = Catatan.objects.filter(pemilik=request.user).order_by('-tanggal')
-    return render(request, 'catatan/daftar.html', {'semua': semua})
-
+    q = request.GET.get("q", "")
+    semua = Catatan.objects.filter(pemilik=request.user)
+    if q:
+        semua = semua.filter(judul__icontains=q)
+    semua = semua.order_by('-tanggal')
+    return render(request, 'catatan/daftar.html', {'semua': semua, 'q': q})
 
 @login_required
 def tambah_catatan(request):
