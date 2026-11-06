@@ -30,3 +30,10 @@ Tes memastikan pengguna hanya melihat catatannya sendiri, tidak bisa mengedit at
 ## Catatan
 - `db.sqlite3` tidak ikut git, jadi database dibuat ulang lewat `migrate`.
 - Halaman admin: http://127.0.0.1:8000/admin/
+
+## Demo
+
+alamatku https://irokhim.pythonanywhere.com
+
+situs berjalan di paket gratis PythonAnywhere dan bisa nonaktif kalau tidak diperpanjang tiap bulan.
+
