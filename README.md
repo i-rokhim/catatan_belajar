@@ -8,6 +8,7 @@ sendiri dan hanya melihat catatannya sendiri.
 - Registrasi, login, dan logout
 - Catatan dibatasi per pengguna
 - Pencarian catatan berdasarkan judul
+- Prioritas catatan dengan pilihan tingkat kepentingan Rendah, Normal, atau Tinggi
 
 ## Menjalankan di Windows (CMD)
     
@@ -25,7 +26,7 @@ Buka http://127.0.0.1:8000/ di browser.
     
     python manage.py test
 
-Tes memastikan pengguna hanya melihat catatannya sendiri, tidak bisa mengedit atau menghapus catatan orang lain, dan pencarian berjalan.
+Tes memastikan pengguna hanya melihat catatannya sendiri, tidak bisa mengedit atau menghapus catatan orang lain, pencarian berjalan, nilai bawaan prioritas adalah Normal, serta prioritas yang dipilih dari formulir tersimpan ke database.
 
 ## Catatan
 - `db.sqlite3` tidak ikut git, jadi database dibuat ulang lewat `migrate`.
