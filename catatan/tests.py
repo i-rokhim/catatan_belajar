@@ -41,3 +41,13 @@ class DaftarCatatanTest(TestCase):
         response = self.client.get(reverse("daftar_catatan"))
         self.assertEqual(response.status_code, 302)
         self.assertIn("login", response.url)
+
+    def test_catatan_memiliki_prioritas_default(self):
+        catatan_a = Catatan.objects.get(judul="catatan milik A")
+        self.assertEqual(catatan_a.prioritas, "Normal")
+
+    def test_prioritas_yang_dipilih_tersimpan_ke_database(self):
+        self.client.login(username="userA", password="rahasia123")
+        self.client.post(reverse("tambah_catatan"), {"judul": "belajar testing", "kategori": "Django", "prioritas": "Tinggi", "isi": "isi catatan"})
+        catatan_baru = Catatan.objects.get(judul="belajar testing")
+        self.assertEqual(catatan_baru.prioritas, "Tinggi")

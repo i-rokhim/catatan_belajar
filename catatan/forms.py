@@ -5,4 +5,4 @@ from .models import Catatan
 class CatatanForm(forms.ModelForm):
     class Meta:
         model = Catatan
-        fields = ['judul', 'kategori', 'isi']
+        fields = ['judul', 'kategori', 'prioritas', 'isi']
