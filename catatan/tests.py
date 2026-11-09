@@ -51,3 +51,30 @@ class DaftarCatatanTest(TestCase):
         self.client.post(reverse("tambah_catatan"), {"judul": "belajar testing", "kategori": "Django", "prioritas": "Tinggi", "isi": "isi catatan"})
         catatan_baru = Catatan.objects.get(judul="belajar testing")
         self.assertEqual(catatan_baru.prioritas, "Tinggi")
+
+    def test_filter_prioritas_hanya_menampilkan_yang_cocok(self):
+        self.client.login(username="userA", password="rahasia123")
+
+        Catatan.objects.create(
+            judul="Judul Satu",
+            kategori="tes",
+            prioritas="Tinggi",
+            isi="isi catatan",
+            pemilik=self.a
+        )
+
+        Catatan.objects.create(
+            judul="Judul Dua",
+            kategori="tes",
+            prioritas="Normal",
+            isi="isi catatan",
+            pemilik=self.a
+        )
+
+        response = self.client.get(
+            reverse("daftar_catatan"),
+            {"prioritas": "Tinggi"}
+        )
+
+        self.assertContains(response, "Judul Satu")
+        self.assertNotContains(response, "Judul Dua")
