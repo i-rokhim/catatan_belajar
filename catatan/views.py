@@ -16,7 +16,11 @@ def daftar_catatan(request):
     if prioritas:
         semua = semua.filter(prioritas=prioritas)
     semua = semua.order_by('-tanggal')
-    return render(request, 'catatan/daftar.html', {'semua': semua, 'q': q})
+    return render(request, 'catatan/daftar.html', {
+        'semua': semua,
+        'q': q,
+        'prioritas':prioritas
+    })
 
 @login_required
 def tambah_catatan(request):

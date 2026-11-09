@@ -78,3 +78,13 @@ class DaftarCatatanTest(TestCase):
 
         self.assertContains(response, "Judul Satu")
         self.assertNotContains(response, "Judul Dua")
+
+    def test_form_cari_membawa_prioritas_aktif(self):
+        self.client.login(username="userA", password="rahasia123")
+
+        response = self.client.get(
+            reverse("daftar_catatan"),
+            {"prioritas": "Tinggi"}
+        )
+
+        self.assertContains(response, 'name="prioritas" value="Tinggi"')
